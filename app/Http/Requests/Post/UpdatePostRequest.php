@@ -4,7 +4,7 @@ namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,14 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|unique:posts,title',
-            'description' => 'required|min:10'
+            'title' => 'min:3',
+            'description' => 'min:10'
         ];
     }
     public function messages()
     {
         return [
-            'title.required' => 'Title is Required',
             'title.min' => 'Minimum Title Length is 3 characters',
-            'title.unique' => 'Title already exists',
-            'description.required' => 'Description is Required',
             'description.min' => 'Minimum Description Length is 10 characters'
         ];
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 
 class PostsController extends Controller
 {
@@ -47,8 +48,8 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function update(Post $post){
-        $request = request();
+    public function update(UpdatePostRequest $request, Post $post){
+        // $request = request();
         $post->update($request->all());
         return redirect()->route('posts.index');
     }
