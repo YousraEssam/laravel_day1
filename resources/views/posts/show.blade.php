@@ -29,7 +29,7 @@
             <p class="card-text"> {{$post->user->email}} </p>
 
             <h5 class="card-title">Created at</h5>
-            <p class="card-text"> {{$post->created_at}} </p>
+            <p class="card-text">{{date('l jS \of F, Y, g:i:s A', strtotime($post->created_at))}} </p>
         </div>
     </div>
 

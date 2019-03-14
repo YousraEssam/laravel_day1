@@ -62,7 +62,8 @@ class PostsController extends Controller
         // $post = Post::findOrFail($post);
        // dd($post->id);
         return view('posts.edit',[
-            'post' => $post
+            'post' => $post,
+            'users' => User::all()
         ]);
 
         // return view('posts.edit',[
@@ -77,7 +78,7 @@ class PostsController extends Controller
     }
 
     public function destroy(Post $post){
-        Post::destroy($post->id);
+        $post->delete();
         return redirect()->route('posts.index');
     }
 }

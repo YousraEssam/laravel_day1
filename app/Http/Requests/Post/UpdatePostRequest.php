@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class UpdatePostRequest extends FormRequest
 {
@@ -23,15 +25,21 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->post->user_id);
         return [
-            'title' => 'min:3',
-            'description' => 'min:10'
+            'title' => 'required|min:3|unique:posts,title,'.$this->post->id,
+            // 'title' => ['required','min:3','unique:posts,title',Rule::unique('posts')->ignore($this->post->id)],
+            'description' => 'required|min:10',
+            'user_id' => 'exists:posts,user_id'
         ];
     }
     public function messages()
     {
         return [
+            'title.required' => 'Title is Required',
             'title.min' => 'Minimum Title Length is 3 characters',
+            'title.unique' => 'Title already exists',
+            'description.required' => 'Description is Required',
             'description.min' => 'Minimum Description Length is 10 characters'
         ];
     }
